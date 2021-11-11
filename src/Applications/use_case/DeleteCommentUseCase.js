@@ -9,7 +9,7 @@ class DeleteCommentUseCase {
             commentId,
             credentialId,
         } = useCasePayload;
-        await this._commentRepository.verifyCommentAccess(commentId, credentialId, threadId);
+        await this._commentRepository.verifyCommentAccess(commentId, credentialId);
         return this._commentRepository
             .deleteCommentByCommentId(commentId);
     }
