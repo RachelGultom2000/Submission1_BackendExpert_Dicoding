@@ -58,13 +58,17 @@ const createServer = async (injections) => {
       plugin: replies,
       options: { injections },
     },
+    {
+      plugin : likes,
+      options : { injections },
+    },
   ]);
 
   server.route({
     method: "GET",
     path: "/",
     handler: () => ({
-      value: "Welcome to Forum API App",
+      value: "Hello world!",
     }),
   });
 
