@@ -59,8 +59,8 @@ const createServer = async (injections) => {
       options: { injections },
     },
     {
-      plugin : likes,
-      options : { injections },
+      plugin: likes,
+      options: { injections },
     },
   ]);
 
