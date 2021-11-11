@@ -102,7 +102,7 @@ describe('/threads endpoint', () => {
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
         title: 'rachel',
-        body: 'magical mode',
+        body: 'node js',
         owner: 'user-123',
       });
       await CommentsTableTestHelper.addComment({

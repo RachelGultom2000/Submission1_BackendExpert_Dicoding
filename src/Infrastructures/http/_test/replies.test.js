@@ -30,7 +30,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
         title: 'rachelgul',
-        body: 'magical mode',
+        body: 'node js',
         owner: 'user-123',
       });
       await CommentsTableTestHelper.addComment({
@@ -66,7 +66,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
         title: 'rachelgul',
-        body: 'magical mode',
+        body: 'node js',
         owner: 'user-123',
       });
       await CommentsTableTestHelper.addComment({
@@ -145,7 +145,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
         title: 'rachelgul',
-        body: 'magical mode',
+        body: 'node js',
         owner: 'user-123',
       });
       await CommentsTableTestHelper.addComment({

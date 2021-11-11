@@ -73,7 +73,7 @@ describe('ThreadRepositoryPostgres', () => {
         await ThreadsTableTestHelper.addThread({
           id: 'thread-123',
           title: 'rachelgul',
-          body: 'magical mode',
+          body: 'node js',
           owner: 'user-123',
         });
         const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
@@ -83,7 +83,7 @@ describe('ThreadRepositoryPostgres', () => {
 
         // Assert
         expect(detailThread[0].title).toEqual('rachelgul');
-        expect(detailThread[0].body).toEqual('magical mode');
+        expect(detailThread[0].body).toEqual('node js');
         expect(detailThread[0].username).toEqual('dicoding');
       });
     });
@@ -95,7 +95,7 @@ describe('ThreadRepositoryPostgres', () => {
         await ThreadsTableTestHelper.addThread({
           id: 'thread-123',
           title: 'rachelgul',
-          body: 'magical mode',
+          body: 'node js',
           owner: 'user-123',
         });
         await CommentsTableTestHelper.addComment({
@@ -127,7 +127,7 @@ describe('ThreadRepositoryPostgres', () => {
         await ThreadsTableTestHelper.addThread({
           id: 'thread-123',
           title: 'rachelgul',
-          body: 'magical mode',
+          body: 'node js',
           owner: 'user-123',
         });
         await CommentsTableTestHelper.addComment({
@@ -173,7 +173,7 @@ describe('ThreadRepositoryPostgres', () => {
         await ThreadsTableTestHelper.addThread({
           id: 'thread-123',
           title: 'rachelgul',
-          body: 'magical mode',
+          body: 'node js',
           owner: 'user-123',
         });
         await CommentsTableTestHelper.addComment({
