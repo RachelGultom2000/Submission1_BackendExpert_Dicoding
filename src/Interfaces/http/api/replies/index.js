@@ -1,10 +1,10 @@
-const LikeHandler = require('./handler');
+const ReplyHandler = require('./handler');
 const routes = require('./routes');
 
 module.exports = {
-    name : 'likes',
+    name : 'replies',
     register : async (server, {injections}) => {
-        const likeHandler = new LikeHandler(injections);
-        server.route(routes(likeHandler));
+        const replyHandler = new ReplyHandler(injections);
+        server.route(routes(replyHandler));
     },
 };
