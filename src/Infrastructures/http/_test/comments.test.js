@@ -30,7 +30,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
         title: 'rachelgul',
-        body: 'node js',
+        body: 'mode',
         owner: 'user-123',
       });
       const server = await createServer(injections);
@@ -62,7 +62,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
         title: 'rachelgul',
-        body: 'node js',
+        body: 'mode',
         owner: 'user-123',
       });
       const server = await createServer(injections);
@@ -136,7 +136,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
         title: 'rachelgul',
-        body: 'node js',
+        body: 'magical mode',
         owner: 'user-123',
       });
       await CommentsTableTestHelper.addComment({

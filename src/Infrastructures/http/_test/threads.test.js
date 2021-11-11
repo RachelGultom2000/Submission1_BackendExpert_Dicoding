@@ -101,8 +101,8 @@ describe('/threads endpoint', () => {
       await UsersTableTestHelper.addUser({ id: 'user-123' });
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
-        title: 'rachel',
-        body: 'node js',
+        title: 'rachelgul',
+        body: 'mode',
         owner: 'user-123',
       });
       await CommentsTableTestHelper.addComment({
