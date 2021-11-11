@@ -1,9 +1,9 @@
 const CommentRepository = require('../../../Domains/comments/CommentRepository');
 const DeleteCommentUseCase = require('../DeleteCommentUseCase');
 
-describe('DeleteCommentUseCase', () => {
+describe('DeleteCommentUseCase', () => { // memanggil instance class
   it('should orchestrating the add thread action correctly', async () => {
-    // arrange
+    // Arrange
     const useCasePayload = {
       threadId: 'thread-123',
       commentId: 'comment-123',
@@ -27,10 +27,10 @@ describe('DeleteCommentUseCase', () => {
       commentRepository: mockCommentRepository,
     });
 
-    // action
+    // Action
     const deletedComment = await deleteCommentUseCase.execute(useCasePayload);
 
-    // assert
+    // Assert
     expect(deletedComment).toStrictEqual(expectedDeletedComment);
     expect(mockCommentRepository.verifyCommentAccess).toBeCalledWith(
       useCasePayload.commentId,
