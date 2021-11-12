@@ -95,7 +95,7 @@ const createServer = async (injections) => {
         return h.continue;
       }
 
-      console.log(response);
+      // console.log(response); // check error message
       // penanganan server error sesuai kebutuhan
       const newResponse = h.response({
         status: "error",

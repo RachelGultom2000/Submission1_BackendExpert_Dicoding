@@ -1,7 +1,7 @@
 class LikeHandler {
   constructor({ performLikeUseCase }) {
     this._performLikeUseCase = performLikeUseCase;
-    this._performLikeHandler = this.performLikeHandler.bind(this);
+    this.performLikeHandler = this.performLikeHandler.bind(this);
   }
 
   async performLikeHandler(request, h) {
