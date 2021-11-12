@@ -9,11 +9,11 @@ const ServerTesthelper =  {
         fullname = 'rachelgultom',
     }) {
         // Add New User
-        const query = {
+        const addQuery = {
             text: 'INSERT INTO users VALUES($1,$2,$3,$4)',
             values : [id,username,password,fullname],
         };
-        await pool.query(query);
+        await pool.query(addQuery);
 
         // Generate Token
         const accessToken = Jwt.token.generate(
@@ -36,6 +36,7 @@ const ServerTesthelper =  {
         return accessToken;
     },
     async cleanTable(){
+        // bersihkan data pada tabel
         await pool.query('DELETE FROM authentications WHERE 1=1');
         await pool.query('DELETE FROM users WHERE 1=1');
     },

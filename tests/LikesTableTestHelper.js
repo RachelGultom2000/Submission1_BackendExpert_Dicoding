@@ -9,21 +9,21 @@ const LikesTableTestHelper = {
     commentId = 'comment-123',
     owner = 'user-123',
   }) {
-    const query = {
+    const addQuery = {
       text: 'INSERT INTO likes VALUES($1, $2, $3, $4)',
       values: [id, threadId, commentId, owner],
     };
 
-    await pool.query(query);
+    await pool.query(addQuery);
   },
 
   async getLikeDetail(threadId, commentId, owner) {
-    const query = {
+    const getQuery = {
       text: 'SELECT * FROM likes WHERE thread_id=$1 AND comment_id=$2 AND owner=$3',
       values: [threadId, commentId, owner],
     };
 
-    const result = await pool.query(query);
+    const result = await pool.query(getQuery);
     return result.rows;
   },
 

@@ -11,31 +11,31 @@ const RepliesTableTestHelper = {
     isDelete = false,
     owner = 'user-123',
   }) {
-    const query = {
+    const addQuery = {
       text: 'INSERT INTO replies VALUES($1, $2, $3, $4, $5, $6, $7)',
       values: [id, threadId, commentId, content, date, isDelete, owner],
     };
 
-    await pool.query(query);
+    await pool.query(addQuery);
   },
 
   async getReplyById(id) {
-    const query = {
+    const getQuery = {
       text: 'SELECT * FROM replies WHERE id = $1',
       values: [id],
     };
 
-    const result = await pool.query(query);
+    const result = await pool.query(getQuery);
     return result.rows;
   },
 
   async deleteReplyByReplyId(replyId) {
-    const query = {
+    const deleteQuery = {
       text: 'UPDATE replies set is_delete=true WHERE id = $1',
       values: [replyId],
     };
 
-    await pool.query(query);
+    await pool.query(deleteQuery);
   },
 
   async cleanTable() {

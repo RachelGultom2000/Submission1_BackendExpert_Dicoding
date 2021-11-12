@@ -10,20 +10,20 @@ const ThreadsTableTestHelper = {
     date = '2021-08-08T07:59:48.766Z',
     owner = 'user-123',
   }) {
-    const query = {
+    const addQuery = {
       text: 'INSERT INTO threads VALUES($1, $2, $3, $4, $5)',
       values: [id, title, body, date, owner],
     };
 
-    await pool.query(query);
+    await pool.query(addQuery);
   },
 
   async getThreadById(threadId) {
-    const query = {
+    const getQuery = {
       text: 'SELECT * FROM threads WHERE id = $1',
       values: [threadId],
     };
-    const result = await pool.query(query);
+    const result = await pool.query(getQuery);
 
     // get comments in thread
     const commentsQuery = {
@@ -48,6 +48,7 @@ const ThreadsTableTestHelper = {
   },
 
   async cleanTable() {
+    // bersihkan data
     await pool.query('DELETE FROM threads WHERE 1=1');
   },
 };

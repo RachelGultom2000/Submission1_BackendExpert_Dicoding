@@ -1,3 +1,4 @@
+// inisialisasi tabel dan kolom
 const mapDBToDetailThread = ({
     id,
     title,

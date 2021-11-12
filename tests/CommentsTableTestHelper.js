@@ -9,31 +9,31 @@ const CommentsTableTestHelper = {
         isDelete = false,
         owner = 'user-123',
     }) { 
-        const query = {
+        const addQuery = {
             text: 'INSERT INTO comments VALUES ($1, $2, $3, $4, $5, $6)',
             values : [id ,threadId, content, date, isDelete, owner],
         };
 
-        await pool.query(query);
+        await pool.query(addQuery);
     },
 
     async getCommentById(id){
-        const query = {
+        const getQuery = {
             text: 'SELECT * FROM comments WHERE id = $1',
             values: [id],
         };
 
-        const result = await pool.query(query);
+        const result = await pool.query(getQuery);
         return result.rows;
     },
 
     async deleteCommentByIdCommentId(commentid){
-        const query = {
+        const deleteQuery = {
             text: 'UPDATE comments set is_delete=true WHERE id = $1',
             values : [commentid],
         };
 
-        await pool.query(query);
+        await pool.query(deleteQuery);
     },
 
     async cleanTable(){

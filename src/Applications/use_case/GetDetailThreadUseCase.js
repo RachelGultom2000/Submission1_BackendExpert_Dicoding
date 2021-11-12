@@ -1,5 +1,7 @@
 const DetailThread = require("../../Domains/threads/entities/DetailThread");
 
+// deklarasikan variabel const yang berisi parameter dari mapdb.js dimana isinya
+// menampung data dari 3 tabel yaitu thread,comment dan reply
 const {
   mapDBToDetailThread,
   mapDBToDetailComment,
@@ -7,11 +9,15 @@ const {
 } = require("../../Commons/utils/mapdb");
 
 class GetDetailThreadUseCase {
+  // memberikan nilai awal pada saat suatu objek ibuat dengan 
+  // menggunakan constructor
   constructor({ threadRepository }) {
-    this._threadRepository = threadRepository;
+    this._threadRepository = threadRepository; // representasi objek
   }
 
-  async execute(useCasePayload) {
+  // menciptakan variabel dengan nama dataThread,dataComment,dataReply dan dataLike 
+  // untuk menampung data yang masuk.
+  async execute(useCasePayload) { 
     const dataThread = await this._threadRepository.getThreadById(
       useCasePayload
     );

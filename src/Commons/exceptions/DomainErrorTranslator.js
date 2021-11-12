@@ -6,6 +6,7 @@ const DomainErrorTranslator = {
   },
 };
 
+// menerjemahkan error
 DomainErrorTranslator._directories = {
   'NEW_USER.NOT_CONTAIN_NEEDED_PROPERTY': new InvariantError('tidak dapat membuat user baru karena properti yang dibutuhkan tidak ada'),
   'NEW_USER.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat membuat user baru karena tipe data tidak sesuai'),
