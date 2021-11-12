@@ -2,6 +2,7 @@
 
 exports.shorthands = undefined;
 
+/* tabel comment */
 exports.up = (pgm) => {
   pgm.createTable('comments', {
     id: {
