@@ -15,12 +15,14 @@ const createServer = async (injections) => {
     port: process.env.PORT,
   });
 
+  // daftarkan plugin jwt
   await server.register([
     {
       plugin: Jwt,
     },
   ]);
 
+  // access token
   server.auth.strategy("forumapp_jwt", "jwt", {
     keys: process.env.ACCESS_TOKEN_KEY,
     verify: {
@@ -37,6 +39,7 @@ const createServer = async (injections) => {
     }),
   });
 
+  // mendaftarkan plugin
   await server.register([
     {
       plugin: users,

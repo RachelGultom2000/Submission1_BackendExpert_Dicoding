@@ -1,5 +1,5 @@
 class AddedComment {
-  constructor(payload) {
+  constructor(payload) { // inisialisasi class
     this._verifyPayload(payload);
 
     const { id, content, owner } = payload;

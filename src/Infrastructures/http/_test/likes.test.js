@@ -7,6 +7,7 @@ const UsersTableTestHelper = require('../../../../tests/UsersTableTestHelper');
 const CommentsTableTestHelper = require('../../../../tests/CommentsTableTestHelper');
 const LikesTableTestHelper = require('../../../../tests/LikesTableTestHelper');
 
+// deklarasikan testing
 describe('/threads/{threadId}/comments/{commentId}/likes endpoint', () => {
   afterAll(async () => {
     await pool.end();
