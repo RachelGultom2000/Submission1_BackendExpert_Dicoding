@@ -10,6 +10,7 @@ class ReplyRepositoryPostgres extends ReplyRepository {
     this._idGenerator = idGenerator;
   }
 
+  // CREATE 
   async addReply(newReply, threadId, commentId, owner) {
     const { content } = newReply;
     const id = `reply-${this._idGenerator()}`;
@@ -17,39 +18,40 @@ class ReplyRepositoryPostgres extends ReplyRepository {
     const date = now.toISOString();
     const isDelete = false;
 
-    const queryThread = {
+    const getQueryThread = {
       text: 'SELECT * FROM threads WHERE id = $1',
       values: [threadId],
     };
-    const resultThread = await this._pool.query(queryThread);
+    const resultThread = await this._pool.query(getQueryThread);
     if (!resultThread.rowCount) {
       throw new NotFoundError('tidak bisa menambah reply: thread tidak ditemukan');
     }
-    const queryComment = {
+    const getQueryComment = {
       text: 'SELECT * FROM comments WHERE id = $1',
       values: [commentId],
     };
-    const resultComment = await this._pool.query(queryComment);
+    const resultComment = await this._pool.query(getQueryComment);
     if (!resultComment.rowCount) {
       throw new NotFoundError('tidak bisa menambah reply: komentar tidak ditemukan');
     }
 
-    const query = {
+    const getLikeQuery = {
       text: 'INSERT INTO replies VALUES($1, $2, $3, $4, $5,$6,$7) RETURNING id, content, owner',
       values: [id, threadId, commentId, content, date, isDelete, owner],
     };
 
-    const result = await this._pool.query(query);
+    const result = await this._pool.query(getLikeQuery);
 
     return new AddedReply({ ...result.rows[0] });
   }
 
+  // VERIFY
   async verifyReplyAccess(replyId, credentialId) {
-    const query = {
+    const replyQuery = {
       text: 'SELECT * FROM replies WHERE id = $1',
       values: [replyId],
     };
-    const result = await this._pool.query(query);
+    const result = await this._pool.query(replyQuery);
 
     if (!result.rowCount) {
       throw new NotFoundError('reply tidak ditemukan');
@@ -60,12 +62,13 @@ class ReplyRepositoryPostgres extends ReplyRepository {
     }
   }
 
+  // DELETE
   async deleteReplyByReplyId(replyId) {
-    const query = {
+    const replyQuery = {
       text: 'UPDATE replies set is_delete=true WHERE id = $1',
       values: [replyId],
     };
-    const result = await this._pool.query(query);
+    const result = await this._pool.query(replyQuery);
 
     if (!result.rowCount) {
       throw new NotFoundError('reply tidak ditemukan');

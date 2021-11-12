@@ -21,6 +21,7 @@ describe('/threads endpoint', () => {
     await ServerTesthelper.cleanTable();
   });
 
+  // POST
   describe('when POST /threads', () => {
     it('should response 201 and persisted addedThread', async () => {
       // Arrange
@@ -96,6 +97,7 @@ describe('/threads endpoint', () => {
     });
   });
 
+  // GET
   describe('when GET /threads/{threadId}', () => {
     it('should response 200 and persisted detail thread', async () => {
       // Arrange

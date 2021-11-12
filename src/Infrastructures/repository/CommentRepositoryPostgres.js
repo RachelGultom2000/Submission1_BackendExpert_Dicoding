@@ -10,6 +10,7 @@ class CommentRepositoryPostgres extends CommentRepository {
     this._idGenerator = idGenerator;
   }
 
+  // ADD
   async addComment(newComment, threadId, owner) {
     const { content } = newComment;
     const id = `comment-${this._idGenerator()}`;
@@ -36,6 +37,7 @@ class CommentRepositoryPostgres extends CommentRepository {
     return new AddedComment({ ...result.rows[0] });
   }
 
+  // VERIFY
   async verifyCommentAccess(commentId, credentialId) {
     const query = {
       text: 'SELECT * FROM comments WHERE id = $1',
@@ -52,6 +54,7 @@ class CommentRepositoryPostgres extends CommentRepository {
     }
   }
 
+  // DELETE
   async deleteCommentByCommentId(commentId) {
     const query = {
       text: 'UPDATE comments set is_delete=true WHERE id = $1',

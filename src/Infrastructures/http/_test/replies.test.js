@@ -21,6 +21,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
     await ServerTesthelper.cleanTable();
   });
 
+  // POST
   describe('when POST /threads/{threadId}/comments/{commentId}/replies', () => {
     it('should response 201 and persisted addedReply', async () => {
       // Arrange
@@ -139,6 +140,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
     });
   });
 
+  // GET
   describe('when DELETE /threads/{threadId}/comments/{commentId}/replies/{replyId}', () => {
     it('should response 200 and success', async () => {
       // Arrange

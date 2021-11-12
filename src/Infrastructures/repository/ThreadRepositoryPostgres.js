@@ -9,66 +9,71 @@ class ThreadRepositoryPostgres extends ThreadRepository {
     this._idGenerator = idGenerator;
   }
 
+  // CREATE
   async addThread(newThread, owner) {
     const { title, body } = newThread;
     const id = `thread-${this._idGenerator()}`;
     const now = new Date();
     const date = now.toISOString();
 
-    const query = {
+    const addThreadQuery = {
       text: 'INSERT INTO threads VALUES($1, $2, $3, $4, $5) RETURNING id, title, owner',
       values: [id, title, body, date, owner],
     };
 
-    const result = await this._pool.query(query);
+    const result = await this._pool.query(addThreadQuery);
     // console.log(query);
 
     return new AddedThread({ ...result.rows[0] });
   }
 
+  // GET Comment
   async getCommentByThreadId(threadId) {
-    const commentsQuery = {
+    const getCommentQuery = {
       text: `SELECT comments.*, users.username 
             FROM comments LEFT JOIN users ON users.id = comments.owner
             WHERE comments.thread_id = $1 
             ORDER BY date ASC`,
       values: [threadId],
     };
-    const resComments = await this._pool.query(commentsQuery);
-    return resComments.rows;
+    const responseComments = await this._pool.query(getCommentQuery);
+    return responseComments.rows;
   }
 
+  // GET Reply
   async getReplyByThreadId(threadId) {
-    const repliesQuery = {
+    const getRepliesQuery = {
       text: `SELECT replies.*, users.username 
           FROM replies LEFT JOIN users ON users.id = replies.owner
           WHERE replies.thread_id = $1 
           ORDER BY date ASC`,
       values: [threadId],
     };
-    const resReplies = await this._pool.query(repliesQuery);
-    return resReplies.rows;
+    const responseReplies = await this._pool.query(getRepliesQuery);
+    return responseReplies.rows;
   }
 
+  // GET Like
   async getlikeByThreadId(threadId) {
-    const likesQuery = {
+    const getLikesQuery = {
       text: `SELECT * FROM likes
           WHERE thread_id = $1`,
       values: [threadId],
     };
-    const resRlikes = await this._pool.query(likesQuery);
-    return resRlikes.rows;
+    const responselikes = await this._pool.query(getLikesQuery);
+    return responselikes.rows;
   }
 
+  // GET Thread
   async getThreadById(threadId) {
-    const query = {
+    const getThreadQuery = {
       text: `SELECT threads.*, users.username 
       FROM threads LEFT JOIN users ON users.id = threads.owner
       WHERE threads.id = $1`,
       values: [threadId],
     };
 
-    const result = await this._pool.query(query);
+    const result = await this._pool.query(getThreadQuery);
 
     if (!result.rowCount) {
       throw new NotFoundError('thread tidak ditemukan');

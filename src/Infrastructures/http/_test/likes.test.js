@@ -21,6 +21,7 @@ describe('/threads/{threadId}/comments/{commentId}/likes endpoint', () => {
     await ServerTesthelper.cleanTable();
   });
 
+  // PUT
   describe('when PUT /threads/{threadId}/comments/{commentId}/likes', () => {
     it('should response 200 and persisted add like', async () => {
       // Arrange

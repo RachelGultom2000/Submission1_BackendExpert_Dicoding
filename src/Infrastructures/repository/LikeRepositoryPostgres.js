@@ -10,53 +10,56 @@ class LikeRepositoryPostgres extends LikeRepository {
     this._idGenerator = idGenerator;
   }
 
+  // CREATE
   async addLike(threadId, commentId, owner) {
     const id = `like-${this._idGenerator()}`;
 
-    const queryThread = {
+    const getQueryThread = {
       text: 'SELECT * FROM threads WHERE id = $1',
       values: [threadId],
     };
-    const resultThread = await this._pool.query(queryThread);
+    const resultThread = await this._pool.query(getQueryThread);
     if (!resultThread.rowCount) {
       throw new NotFoundError('tidak bisa menambah like: thread tidak ditemukan');
     }
-    const queryComment = {
+    const getQueryComment = {
       text: 'SELECT * FROM comments WHERE id = $1',
       values: [commentId],
     };
-    const resultComment = await this._pool.query(queryComment);
+    const resultComment = await this._pool.query(getQueryComment);
     if (!resultComment.rowCount) {
       throw new NotFoundError('tidak bisa menambah like: komentar tidak ditemukan');
     }
 
-    const query = {
+    const getLikeQuery = {
       text: 'INSERT INTO likes VALUES($1, $2, $3, $4)',
       values: [id, threadId, commentId, owner],
     };
 
-    const result = await this._pool.query(query);
+    const result = await this._pool.query(getLikeQuery);
 
     return { status: 'success' };
   }
 
+  // REMOVE
   async removeLike(id) {
-    const query = {
+    const likeQuery = {
       text: 'DELETE FROM likes WHERE id = $1',
       values: [id],
     };
-    await this._pool.query(query);
+    await this._pool.query(likeQuery);
 
     return { status: 'success' };
   }
 
+  // GET
   async getLikeDetail(threadId, commentId, owner) {
-    const query = {
+    const likeQuery = {
       text: 'SELECT * FROM likes WHERE thread_id=$1 AND comment_id=$2 AND owner=$3',
       values: [threadId, commentId, owner],
     };
 
-    const result = await this._pool.query(query);
+    const result = await this._pool.query(likeQuery);
     return result.rows;
   }
 }
