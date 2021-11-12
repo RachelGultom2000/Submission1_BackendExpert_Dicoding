@@ -82,6 +82,7 @@ describe('/threads/{threadId}/comments/{commentId}/likes endpoint', () => {
 
       // Assert
       const responseJson = JSON.parse(response.payload);
+      console.log(responseJson); // check error
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toBeDefined();
