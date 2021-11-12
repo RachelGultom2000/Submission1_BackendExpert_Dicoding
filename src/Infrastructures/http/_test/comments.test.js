@@ -136,7 +136,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
       await ThreadsTableTestHelper.addThread({
         id: 'thread-123',
         title: 'rachelgul',
-        body: 'magical mode',
+        body: 'mode',
         owner: 'user-123',
       });
       await CommentsTableTestHelper.addComment({

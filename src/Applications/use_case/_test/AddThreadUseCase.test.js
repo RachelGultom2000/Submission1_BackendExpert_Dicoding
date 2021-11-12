@@ -5,7 +5,7 @@ const AddThreadUseCase = require('../AddThreadUseCase');
 
 describe('AddThreadUseCase', () => {
     it('should orchestrating the add thread action correctly', async () => {
-        // arange
+        // arrange
         const useCasePayload = {
             title : 'dicoding',
             body  : 'secret',
