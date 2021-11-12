@@ -7,13 +7,13 @@ describe('HTTP server', () => {
     const server = await createServer({});
 
     // Action
-    const response = await server.inject({
+    const getResponse = await server.inject({
       method: 'GET',
       url: '/unregisteredRoute',
     });
 
     // Assert
-    expect(response.statusCode).toEqual(404);
+    expect(getResponse.statusCode).toEqual(404);
   });
 
   describe('when GET /', () => {

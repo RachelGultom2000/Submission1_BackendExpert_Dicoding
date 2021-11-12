@@ -33,7 +33,7 @@ describe('/threads endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const postResponse = await server.inject({
         method: 'POST',
         url: '/threads',
         payload: requestPayload,
@@ -43,8 +43,8 @@ describe('/threads endpoint', () => {
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(201);
+      const responseJson = JSON.parse(postResponse.payload);
+      expect(postResponse.statusCode).toEqual(201);
       expect(responseJson.status).toEqual('success');
       expect(responseJson.data.addedThread).toBeDefined();
       expect(responseJson.data.addedThread.owner).toEqual('user-123');
@@ -59,7 +59,7 @@ describe('/threads endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const postResponse = await server.inject({
         method: 'POST',
         url: '/threads',
         payload: requestPayload,
@@ -69,8 +69,8 @@ describe('/threads endpoint', () => {
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(400);
+      const responseJson = JSON.parse(postResponse.payload);
+      expect(postResponse.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toBeDefined();
     });
@@ -85,7 +85,7 @@ describe('/threads endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const postResponse = await server.inject({
         method: 'POST',
         url: '/threads',
         payload: requestPayload,
@@ -93,7 +93,7 @@ describe('/threads endpoint', () => {
       });
 
       // Assert
-      expect(response.statusCode).toEqual(401);
+      expect(postResponse.statusCode).toEqual(401);
     });
   });
 
@@ -122,14 +122,14 @@ describe('/threads endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const getResponse = await server.inject({
         method: 'GET',
         url: '/threads/thread-123',
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(200);
+      const responseJson = JSON.parse(getResponse.payload);
+      expect(getResponse.statusCode).toEqual(200);
       expect(responseJson.status).toEqual('success');
       expect(responseJson.data.thread).toBeDefined();
     });
@@ -139,14 +139,14 @@ describe('/threads endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const getResponse = await server.inject({
         method: 'GET',
         url: '/threads/thread-123',
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(404);
+      const responseJson = JSON.parse(getResponse.payload);
+      expect(getResponse.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toBeDefined();
     });

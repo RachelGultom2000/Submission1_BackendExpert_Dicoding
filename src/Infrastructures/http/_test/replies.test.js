@@ -43,7 +43,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const postResponse = await server.inject({
         method: 'POST',
         url: '/threads/thread-123/comments/comment-123/replies',
         payload: requestPayload,
@@ -53,8 +53,8 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(201);
+      const responseJson = JSON.parse(postResponse.payload);
+      expect(postResponse.statusCode).toEqual(201);
       expect(responseJson.status).toEqual('success');
       expect(responseJson.data.addedReply).toBeDefined();
     });
@@ -79,7 +79,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const postResponse = await server.inject({
         method: 'POST',
         url: '/threads/thread-123/comments/comment-123/replies',
         payload: requestPayload,
@@ -89,8 +89,8 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(400);
+      const responseJson = JSON.parse(postResponse.payload);
+      expect(postResponse.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toBeDefined();
     });
@@ -103,7 +103,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const postResponse = await server.inject({
         method: 'POST',
         url: '/threads/thread-123/comments/comment-123/replies',
         payload: requestPayload,
@@ -111,7 +111,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       });
 
       // Assert
-      expect(response.statusCode).toEqual(401);
+      expect(postResponse.statusCode).toEqual(401);
     });
 
     it('should response 404 when thread or comment not found', async () => {
@@ -123,7 +123,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const postResponse = await server.inject({
         method: 'POST',
         url: '/threads/xxx/comments/xxx/replies',
         payload: requestPayload,
@@ -133,8 +133,8 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(404);
+      const responseJson = JSON.parse(postResponse.payload);
+      expect(postResponse.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toBeDefined();
     });
@@ -185,7 +185,7 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const deleteResponse = await server.inject({
         method: 'DELETE',
         url: '/threads/thread-123/comments/comment-123/replies/xxx',
         headers: {
@@ -194,8 +194,8 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(404);
+      const responseJson = JSON.parse(deleteResponse.payload);
+      expect(deleteResponse.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toBeDefined();
     });
@@ -205,13 +205,13 @@ describe('/threads/{threadId}/comments/{commentId}/replies endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const deleteResponse = await server.inject({
         method: 'DELETE',
         url: '/threads/thread-123/comments/comment-123/replies/xxx',
       });
 
       // Assert
-      expect(response.statusCode).toEqual(401);
+      expect(deleteResponse.statusCode).toEqual(401);
     });
   });
 });

@@ -40,7 +40,7 @@ describe('/threads/{threadId}/comments/{commentId}/likes endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const putResponse = await server.inject({
         method: 'PUT',
         url: '/threads/thread-123/comments/comment-123/likes',
         headers: {
@@ -49,8 +49,8 @@ describe('/threads/{threadId}/comments/{commentId}/likes endpoint', () => {
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(200);
+      const responseJson = JSON.parse(putResponse.payload);
+      expect(putResponse.statusCode).toEqual(200);
       expect(responseJson.status).toEqual('success');
     });
 
@@ -59,13 +59,13 @@ describe('/threads/{threadId}/comments/{commentId}/likes endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const putResponse = await server.inject({
         method: 'PUT',
         url: '/threads/thread-123/comments/comment-123/likes',
       });
 
       // Assert
-      expect(response.statusCode).toEqual(401);
+      expect(putResponse.statusCode).toEqual(401);
     });
 
     it('should response 404 when thread or comment not found', async () => {
@@ -74,7 +74,7 @@ describe('/threads/{threadId}/comments/{commentId}/likes endpoint', () => {
       const server = await createServer(injections);
 
       // Action
-      const response = await server.inject({
+      const putResponse = await server.inject({
         method: 'PUT',
         url: '/threads/xxx/comments/xxx/likes',
         headers: {
@@ -83,9 +83,9 @@ describe('/threads/{threadId}/comments/{commentId}/likes endpoint', () => {
       });
 
       // Assert
-      const responseJson = JSON.parse(response.payload);
+      const responseJson = JSON.parse(putResponse.payload);
       // console.log(responseJson); // check error message
-      expect(response.statusCode).toEqual(404);
+      expect(putResponse.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toBeDefined();
     });
