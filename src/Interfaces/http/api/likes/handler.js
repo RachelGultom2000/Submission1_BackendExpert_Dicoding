@@ -4,6 +4,7 @@ class LikeHandler {
     this.performLikeHandler = this.performLikeHandler.bind(this);
   }
 
+  // CREATE
   async performLikeHandler(request, h) {
     const useCasePayload = {
       threadId: request.params.threadId,

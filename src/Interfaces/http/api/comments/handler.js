@@ -8,6 +8,7 @@ class CommentHandler {
       this.deleteCommentHandler = this.deleteCommentHandler.bind(this);
     }
   
+    // POST
     async postCommentHandler(request, h) {
       const useCasePayload = {
         threadId: request.params.threadId,
@@ -26,6 +27,7 @@ class CommentHandler {
       return response;
     }
   
+    // DELETE
     async deleteCommentHandler(request, h) {
       const useCasePayload = {
         threadId: request.params.threadId,

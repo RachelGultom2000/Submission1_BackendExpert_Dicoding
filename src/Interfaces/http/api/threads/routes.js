@@ -1,5 +1,6 @@
 const routes = (handler) => ([
   {
+  // Menyimpan data threads
     method: 'POST',
     path: '/threads',
     handler: handler.postThreadHandler,
@@ -7,6 +8,7 @@ const routes = (handler) => ([
       auth: 'forumapp_jwt',
     },
   },
+  // Mengambil data threads berdasarkan ID
   {
     method: 'GET',
     path: '/threads/{threadId}',

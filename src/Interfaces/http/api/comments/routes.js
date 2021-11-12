@@ -1,5 +1,6 @@
 const routes = (handler) => ([
     {
+        // menyimpan data threads
         method: 'POST',
         path  : '/threads/{threadId}/comments',
         handler : handler.postCommentHandler,
@@ -8,6 +9,7 @@ const routes = (handler) => ([
         },
     },
     {
+        // menghapus data threads
         method: 'DELETE',
         path: '/threads/{threadId}/comments/{commentId}',
         handler : handler.deleteCommentHandler,
